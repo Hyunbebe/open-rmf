@@ -1,0 +1,6 @@
+{
+    "esbonio.sphinx.confDir": ".",
+    "files.associations": {
+        "optional": "cpp"
+    }
+}

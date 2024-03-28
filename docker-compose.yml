@@ -1,0 +1,61 @@
+version: '3'
+services:
+
+  rmf_api_server:
+    image: rmf_deployment_template/humble-rmf-web-rmf-server:latest
+    # network_mode: host
+    ports:
+      - "8000:8000"
+      - "8006:8006"
+    stdin_open: true
+    tty: true
+  
+  rmf_simulation:
+    image: rmf_deployment_template/humble-rmf-simulation:latest
+    network_mode: host 
+    command: >
+      bash -c "ros2 launch rmf_demos_gz_classic glhd.launch.xml
+      server_uri:=ws://localhost:8000/_internal"
+    environment:
+      - DISPLAY
+      - QT_X11_NO_MITSHM=1
+      - FASTRTPS_DEFAULT_PROFILES_FILE=/usr/local/share/middleware_profiles/rtps_udp_profile.xml
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: [gpu]
+    # ports:
+    #   - "22012:22012"
+    depends_on:
+      - rmf_api_server
+
+  rmf_web_dashboard:
+    image: rmf_deployment_template/humble-rmf-web-dashboard-local:latest
+    ports:
+      - "3000:80"
+    depends_on:
+      - rmf_api_server
+
+  # rmf_traffic_editor:
+  #   image: rmf_deployment_template/humble-rmf:latest
+  #   user: "1000:1000"
+  #   command: bash -c "traffic-editor"
+  #   environment:
+  #     - DISPLAY
+  #     - QT_X11_NO_MITSHM=1
+  #   volumes:
+  #     - /tmp/.X11-unix:/tmp/.X11-unix:rw
+  #     - ./map:/tmp/map
+  #   runtime: nvidia
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #         - driver: nvidia
+  #           capabilities: [gpu]
+  #   network_mode: host

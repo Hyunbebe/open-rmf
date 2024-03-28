@@ -1,0 +1,52 @@
+material floor_1_Diffuse
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture beige_tiles.png
+			}
+		}
+	}
+}
+material floor_2_Diffuse
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture blue_linoleum.png
+			}
+		}
+	}
+}
+material floor_3_Diffuse
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture brown_marble.png
+			}
+		}
+	}
+}
+material wall_1_Diffuse
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture default.png
+			}
+		}
+	}
+}

@@ -1,0 +1,590 @@
+<sdf version="1.7">
+  <world name="world">
+    <scene>
+      <ambient>0.8 0.8 0.8 1.0</ambient>
+      <background>0 0 0</background>
+      <grid>false</grid>
+    </scene>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <gui>
+      <camera name="gui_camera">
+        <pose>78.09701046576514 -84.43501440843303 10 0 0.6 1.57</pose>
+      </camera>
+      <plugin name="toggle_charging" filename="libtoggle_charging.so" />
+      <plugin name="toggle_floors" filename="libtoggle_floors.so">
+        <floor name="L1" model_name="glhd_L1">
+          <model name="OpenRobotics/Table" />
+          <model name="OpenRobotics/Table_2" />
+          <model name="OpenRobotics/Table_3" />
+          <model name="OpenRobotics/Table_4" />
+          <model name="OpenRobotics/Table_5" />
+          <model name="L1_door1" />
+          <model name="L1_door4" />
+          <model name="L1_door2" />
+          <model name="L1_door3" />
+          <model name="L1_door5" />
+        </floor>
+      </plugin>
+    </gui>
+    <include>
+      <name>OpenRobotics/Table</name>
+      <uri>model://Table</uri>
+      <pose>76.95451513490019 -60.529934591192905 0.0 0 0 1.5708</pose>
+      <static>True</static>
+    </include>
+    <include>
+      <name>OpenRobotics/Table_2</name>
+      <uri>model://Table</uri>
+      <pose>76.95451513490019 -58.952494110730996 0.0 0 0 1.5708</pose>
+      <static>True</static>
+    </include>
+    <include>
+      <name>OpenRobotics/Table_3</name>
+      <uri>model://Table</uri>
+      <pose>79.69034866022356 -63.58627010702293 0.0 0 0 1.5708</pose>
+      <static>True</static>
+    </include>
+    <include>
+      <name>OpenRobotics/Table_4</name>
+      <uri>model://Table</uri>
+      <pose>79.6889219423008 -62.06131246443413 0.0 0 0 1.5708</pose>
+      <static>True</static>
+    </include>
+    <include>
+      <name>OpenRobotics/Table_5</name>
+      <uri>model://Table</uri>
+      <pose>79.69371163818435 -65.11713843814888 0.0 0 0 1.5708</pose>
+      <static>True</static>
+    </include>
+    <include>
+      <name>deliveryBot_1</name>
+      <uri>model://DeliveryRobot</uri>
+      <pose>75.96488243861712 -63.72282739391606 0.0 0 0 -0.01824146274710235</pose>
+    </include>
+    <model name="L1_door1">
+      <pose>77.99642685221026 -71.89985735139282 0.0 0 0 -3.137691997890062</pose>
+      <link name="right">
+        <pose>0.5355837918426652 0 1.11 0 0 0</pose>
+        <visual name="right_visual">
+          <geometry>
+            <box>
+              <size>1.0611675836853305 0.03 2.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.25 0 0.6</ambient>
+            <diffuse>0.5 0.25 0 0.6</diffuse>
+          </material>
+        </visual>
+        <collision name="right_collision">
+          <geometry>
+            <box>
+              <size>1.0611675836853305 0.03 2.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>0x02</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <mass>50.0</mass>
+          <inertia>
+            <ixx>20.17041666666667</ixx>
+            <iyy>24.85865266943568</iyy>
+            <izz>4.695736002769012</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name="right_joint" type="revolute">
+        <parent>world</parent>
+        <child>right</child>
+        <axis>
+          <xyz>0 0 -1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>1.57</upper>
+          </limit>
+        </axis>
+        <pose>0.5355837918426652 0 0 0 0 0</pose>
+      </joint>
+      <link name="left">
+        <pose>-0.5355837918426652 0 1.11 0 0 0</pose>
+        <visual name="left_visual">
+          <geometry>
+            <box>
+              <size>1.0611675836853305 0.03 2.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.25 0 0.6</ambient>
+            <diffuse>0.5 0.25 0 0.6</diffuse>
+          </material>
+        </visual>
+        <collision name="left_collision">
+          <geometry>
+            <box>
+              <size>1.0611675836853305 0.03 2.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>0x02</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <mass>50.0</mass>
+          <inertia>
+            <ixx>20.17041666666667</ixx>
+            <iyy>24.85865266943568</iyy>
+            <izz>4.695736002769012</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name="left_joint" type="revolute">
+        <parent>world</parent>
+        <child>left</child>
+        <axis>
+          <xyz>0 0 -1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>0</upper>
+          </limit>
+        </axis>
+        <pose>-0.5355837918426652 0 0 0 0 0</pose>
+      </joint>
+      <plugin name="door" filename="libdoor.so">
+        <v_max_door>0.5</v_max_door>
+        <a_max_door>0.3</a_max_door>
+        <a_nom_door>0.15</a_nom_door>
+        <dx_min_door>0.01</dx_min_door>
+        <f_max_door>500.0</f_max_door>
+        <door name="L1_door1" type="DoubleSwingDoor" left_joint_name="left_joint" right_joint_name="right_joint" />
+      </plugin>
+    </model>
+    <model name="L1_door4">
+      <pose>73.75459065098626 -106.46719445150771 0.0 0 0 1.5707963267948966</pose>
+      <link name="right">
+        <pose>0.699244644789033 0 1.11 0 0 0</pose>
+        <visual name="right_visual">
+          <geometry>
+            <box>
+              <size>1.388489289578066 0.03 2.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.25 0 0.6</ambient>
+            <diffuse>0.5 0.25 0 0.6</diffuse>
+          </material>
+        </visual>
+        <collision name="right_collision">
+          <geometry>
+            <box>
+              <size>1.388489289578066 0.03 2.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>0x02</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <mass>50.0</mass>
+          <inertia>
+            <ixx>20.17041666666667</ixx>
+            <iyy>28.199593780304184</iyy>
+            <izz>8.036677113637511</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name="right_joint" type="prismatic">
+        <parent>world</parent>
+        <child>right</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>0.0</lower>
+            <upper>1.398489289578066</upper>
+            <effort>500.0</effort>
+          </limit>
+        </axis>
+      </joint>
+      <link name="left">
+        <pose>-0.699244644789033 0 1.11 0 0 0</pose>
+        <visual name="left_visual">
+          <geometry>
+            <box>
+              <size>1.388489289578066 0.03 2.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.25 0 0.6</ambient>
+            <diffuse>0.5 0.25 0 0.6</diffuse>
+          </material>
+        </visual>
+        <collision name="left_collision">
+          <geometry>
+            <box>
+              <size>1.388489289578066 0.03 2.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>0x02</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <mass>50.0</mass>
+          <inertia>
+            <ixx>20.17041666666667</ixx>
+            <iyy>28.199593780304184</iyy>
+            <izz>8.036677113637511</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name="left_joint" type="prismatic">
+        <parent>world</parent>
+        <child>left</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-1.398489289578066</lower>
+            <upper>0.0</upper>
+            <effort>500.0</effort>
+          </limit>
+        </axis>
+      </joint>
+      <plugin name="door" filename="libdoor.so">
+        <v_max_door>0.2</v_max_door>
+        <a_max_door>0.2</a_max_door>
+        <a_nom_door>0.08</a_nom_door>
+        <dx_min_door>0.001</dx_min_door>
+        <f_max_door>100.0</f_max_door>
+        <door name="L1_door4" type="DoubleSlidingDoor" left_joint_name="left_joint" right_joint_name="right_joint" />
+      </plugin>
+    </model>
+    <model name="L1_door2">
+      <pose>73.8762183539019 -87.39019242674723 0.0 0 0 1.5826411842154644</pose>
+      <link name="right">
+        <pose>0.6388322865796074 0 1.11 0 0 0</pose>
+        <visual name="right_visual">
+          <geometry>
+            <box>
+              <size>1.2676645731592149 0.03 2.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.25 0 0.6</ambient>
+            <diffuse>0.5 0.25 0 0.6</diffuse>
+          </material>
+        </visual>
+        <collision name="right_collision">
+          <geometry>
+            <box>
+              <size>1.2676645731592149 0.03 2.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>0x02</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <mass>50.0</mass>
+          <inertia>
+            <ixx>20.17041666666667</ixx>
+            <iyy>26.862389458512233</iyy>
+            <izz>6.699472791845561</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name="right_joint" type="prismatic">
+        <parent>world</parent>
+        <child>right</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>0.0</lower>
+            <upper>1.277664573159215</upper>
+            <effort>500.0</effort>
+          </limit>
+        </axis>
+      </joint>
+      <link name="left">
+        <pose>-0.6388322865796074 0 1.11 0 0 0</pose>
+        <visual name="left_visual">
+          <geometry>
+            <box>
+              <size>1.2676645731592149 0.03 2.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.25 0 0.6</ambient>
+            <diffuse>0.5 0.25 0 0.6</diffuse>
+          </material>
+        </visual>
+        <collision name="left_collision">
+          <geometry>
+            <box>
+              <size>1.2676645731592149 0.03 2.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>0x02</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <mass>50.0</mass>
+          <inertia>
+            <ixx>20.17041666666667</ixx>
+            <iyy>26.862389458512233</iyy>
+            <izz>6.699472791845561</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name="left_joint" type="prismatic">
+        <parent>world</parent>
+        <child>left</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-1.277664573159215</lower>
+            <upper>0.0</upper>
+            <effort>500.0</effort>
+          </limit>
+        </axis>
+      </joint>
+      <plugin name="door" filename="libdoor.so">
+        <v_max_door>0.2</v_max_door>
+        <a_max_door>0.2</a_max_door>
+        <a_nom_door>0.08</a_nom_door>
+        <dx_min_door>0.001</dx_min_door>
+        <f_max_door>100.0</f_max_door>
+        <door name="L1_door2" type="DoubleSlidingDoor" left_joint_name="left_joint" right_joint_name="right_joint" />
+      </plugin>
+    </model>
+    <model name="L1_door3">
+      <pose>78.99411031391465 -87.37877868336511 0.0 0 0 1.5707963267948966</pose>
+      <link name="right">
+        <pose>0.6330806011208416 0 1.11 0 0 0</pose>
+        <visual name="right_visual">
+          <geometry>
+            <box>
+              <size>1.2561612022416833 0.03 2.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.25 0 0.6</ambient>
+            <diffuse>0.5 0.25 0 0.6</diffuse>
+          </material>
+        </visual>
+        <collision name="right_collision">
+          <geometry>
+            <box>
+              <size>1.2561612022416833 0.03 2.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>0x02</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <mass>50.0</mass>
+          <inertia>
+            <ixx>20.17041666666667</ixx>
+            <iyy>26.741420691738636</iyy>
+            <izz>6.578504025071964</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name="right_joint" type="revolute">
+        <parent>world</parent>
+        <child>right</child>
+        <axis>
+          <xyz>0 0 -1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>1.57</upper>
+          </limit>
+        </axis>
+        <pose>0.6330806011208416 0 0 0 0 0</pose>
+      </joint>
+      <link name="left">
+        <pose>-0.6330806011208416 0 1.11 0 0 0</pose>
+        <visual name="left_visual">
+          <geometry>
+            <box>
+              <size>1.2561612022416833 0.03 2.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.25 0 0.6</ambient>
+            <diffuse>0.5 0.25 0 0.6</diffuse>
+          </material>
+        </visual>
+        <collision name="left_collision">
+          <geometry>
+            <box>
+              <size>1.2561612022416833 0.03 2.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>0x02</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <mass>50.0</mass>
+          <inertia>
+            <ixx>20.17041666666667</ixx>
+            <iyy>26.741420691738636</iyy>
+            <izz>6.578504025071964</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name="left_joint" type="revolute">
+        <parent>world</parent>
+        <child>left</child>
+        <axis>
+          <xyz>0 0 -1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>0</upper>
+          </limit>
+        </axis>
+        <pose>-0.6330806011208416 0 0 0 0 0</pose>
+      </joint>
+      <plugin name="door" filename="libdoor.so">
+        <v_max_door>0.5</v_max_door>
+        <a_max_door>0.3</a_max_door>
+        <a_nom_door>0.15</a_nom_door>
+        <dx_min_door>0.01</dx_min_door>
+        <f_max_door>500.0</f_max_door>
+        <door name="L1_door3" type="DoubleSwingDoor" left_joint_name="left_joint" right_joint_name="right_joint" />
+      </plugin>
+    </model>
+    <model name="L1_door5">
+      <pose>78.82616523272068 -106.42398528013256 0.0 0 0 1.5707963267948966</pose>
+      <link name="right">
+        <pose>0.7026076227498308 0 1.11 0 0 0</pose>
+        <visual name="right_visual">
+          <geometry>
+            <box>
+              <size>1.3952152454996616 0.03 2.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.25 0 0.6</ambient>
+            <diffuse>0.5 0.25 0 0.6</diffuse>
+          </material>
+        </visual>
+        <collision name="right_collision">
+          <geometry>
+            <box>
+              <size>1.3952152454996616 0.03 2.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>0x02</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <mass>50.0</mass>
+          <inertia>
+            <ixx>20.17041666666667</ixx>
+            <iyy>28.27760658864451</iyy>
+            <izz>8.114689921977837</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name="right_joint" type="revolute">
+        <parent>world</parent>
+        <child>right</child>
+        <axis>
+          <xyz>0 0 -1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>1.57</upper>
+          </limit>
+        </axis>
+        <pose>0.7026076227498308 0 0 0 0 0</pose>
+      </joint>
+      <link name="left">
+        <pose>-0.7026076227498308 0 1.11 0 0 0</pose>
+        <visual name="left_visual">
+          <geometry>
+            <box>
+              <size>1.3952152454996616 0.03 2.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.25 0 0.6</ambient>
+            <diffuse>0.5 0.25 0 0.6</diffuse>
+          </material>
+        </visual>
+        <collision name="left_collision">
+          <geometry>
+            <box>
+              <size>1.3952152454996616 0.03 2.2</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>0x02</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <inertial>
+          <mass>50.0</mass>
+          <inertia>
+            <ixx>20.17041666666667</ixx>
+            <iyy>28.27760658864451</iyy>
+            <izz>8.114689921977837</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name="left_joint" type="revolute">
+        <parent>world</parent>
+        <child>left</child>
+        <axis>
+          <xyz>0 0 -1</xyz>
+          <limit>
+            <lower>-1.57</lower>
+            <upper>0</upper>
+          </limit>
+        </axis>
+        <pose>-0.7026076227498308 0 0 0 0 0</pose>
+      </joint>
+      <plugin name="door" filename="libdoor.so">
+        <v_max_door>0.5</v_max_door>
+        <a_max_door>0.3</a_max_door>
+        <a_nom_door>0.15</a_nom_door>
+        <dx_min_door>0.01</dx_min_door>
+        <f_max_door>500.0</f_max_door>
+        <door name="L1_door5" type="DoubleSwingDoor" left_joint_name="left_joint" right_joint_name="right_joint" />
+      </plugin>
+    </model>
+    <include>
+      <name>glhd_L1</name>
+      <uri>model://glhd_L1</uri>
+      <pose>0 0 0.0 0 0 0</pose>
+    </include>
+    <rmf_charger_waypoints name="charger_waypoints">
+      <rmf_vertex name="deliverybot_charger" x="75.96488243861712" y="-63.72282739391606" level="L1" />
+    </rmf_charger_waypoints>
+  </world>
+</sdf>

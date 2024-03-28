@@ -1,0 +1,21 @@
+
+name: TurtleBot3_Waffle_Pi_1
+model: ''
+task_id: ''
+seq: 552
+mode:
+  mode: 1
+  mode_request_id: 0
+battery_percent: 100.0
+location:
+  t:
+    sec: 276
+    nanosec: 547000000
+  x: 7.8905487060546875
+  y: -9.891241073608398
+  yaw: -1.0182521343231201
+  obey_approach_speed_limit: false
+  approach_speed_limit: 0.0
+  level_name: L1
+  index: 0
+path: []

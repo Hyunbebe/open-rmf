@@ -1,0 +1,25 @@
+<sdf version="1.7">
+  <world name="world">
+    <scene>
+      <ambient>0.8 0.8 0.8 1.0</ambient>
+      <background>0 0 0</background>
+      <grid>false</grid>
+    </scene>
+    <gui>
+      <camera name="gui_camera">
+        <pose>9.911748274262123 -29.234236366907496 10 0 0.6 1.57</pose>
+      </camera>
+    </gui>
+    <include>
+      <name>TurtleBot3_Waffle_Pi_1</name>
+      <uri>model://TurtleBot3_Waffle_Pi</uri>
+      <pose>7.895171721571487 -9.898750082854358 0.0 0 0 -1.0185630729472164</pose>
+    </include>
+    <include>
+      <name>turtlebot_world_L1</name>
+      <uri>model://turtlebot_world_L1</uri>
+      <pose>0 0 0.0 0 0 0</pose>
+    </include>
+
+  </world>
+</sdf>
